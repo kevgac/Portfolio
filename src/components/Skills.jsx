@@ -1,6 +1,9 @@
 import React from 'react'
+import { useScrollAnimation } from '../hooks/useScrollAnimation' // 1. Import du hook
 
 const Skills = () => {
+  const [sectionRef, isVisible] = useScrollAnimation(); // 2. Initialisation du hook
+
   const techStack = [
     { category: "Backend", skills: ["Java 21", "Spring Boot 3", "Spring Security 6", "JPA / Hibernate"] },
     { category: "Frontend", skills: ["React", "JavaScript (ES6+)", "Tailwind CSS v4", "HTML5 / CSS3"] },
@@ -9,14 +12,20 @@ const Skills = () => {
   ]
 
   return (
-    <section id="about" className="py-20 max-w-5xl mx-auto px-6 border-t border-slate-200 dark:border-slate-800">
+    // 3. On attache la ref et on applique dynamiquement la classe si la section est visible
+    <section 
+      id="about" 
+      ref={sectionRef}
+      className={`py-20 max-w-5xl mx-auto px-6 border-t border-slate-200 dark:border-slate-800 reveal ${
+        isVisible ? 'reveal-visible' : ''
+      }`}
+    >
       <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-12 flex items-center">
         <span className="text-sky-600 dark:text-sky-400 font-mono text-xl mr-2">01.</span> Mes Compétences
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {techStack.map((group, index) => (
-          // bg-slate-50 en mode clair, bg-slate-800/40 en mode sombre
           <div key={index} className="bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 p-6 rounded-lg backdrop-blur-sm">
             <h3 className="text-xl font-semibold text-sky-600 dark:text-sky-400 mb-4">{group.category}</h3>
             <div className="flex flex-wrap gap-2">
