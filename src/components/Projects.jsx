@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import { useScrollAnimation } from '../hooks/useScrollAnimation' // 1. Importation du hook d'animation
 
 const Projects = () => {
+  // 2. Utilisation du hook pour la section Projets
+  const [sectionRef, isVisible] = useScrollAnimation();
+
+  // État pour stocker les Todos du Projet 1
   const [todos, setTodos] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  // Appel HTTP vers l'API Spring Boot
   useEffect(() => {
     fetch('http://localhost:8080/api/todos')
       .then((response) => {
@@ -22,6 +28,7 @@ const Projects = () => {
       })
   }, [])
 
+  // Liste de tes projets (Projets 2, 3, 4 et 5)
   const myProjects = [
     {
       id: 2,
@@ -36,11 +43,32 @@ const Projects = () => {
       description: "Système de sécurité et d'authentification complet et stateless. Gestion des inscriptions, connexions, chiffrement des mots de passe avec BCrypt et protection des routes par rôles (USER/ADMIN).",
       tech: ["Spring Security 6", "JWT (JJWT)", "PostgreSQL", "Docker"],
       github: "https://github.com/kevgac/API_Auth_JWT"
+    },
+    {
+      id: 4,
+      title: "Projet 4 : Talk Application (Chat Real-time)",
+      description: "Application de messagerie instantanée en temps réel. Permet l'envoi et la réception de messages immédiats sans rafraîchissement de la page grâce à une architecture bidirectionnelle.",
+      tech: ["Java", "WebSockets", "Spring Boot", "Real-time"],
+      github: "https://github.com/kevgac/Talk-Application"
+    },
+    {
+      id: 5,
+      title: "Projet 5 : Web Scraping Python",
+      description: "Script d'automatisation conçu pour extraire et structurer les données de sites web cibles. Gestion du parsing HTML, des requêtes asynchrones et du stockage des données.",
+      tech: ["Python", "BeautifulSoup", "Scraping", "Automation"],
+      github: "https://github.com/kevgac/Web_Scraping_with_Python"
     }
   ]
 
   return (
-    <section id="projects" className="py-20 max-w-5xl mx-auto px-6 border-t border-slate-200 dark:border-slate-800">
+    // 3. Liaison de la référence et injection de la classe dynamique 'reveal'
+    <section 
+      id="projects" 
+      ref={sectionRef}
+      className={`py-20 max-w-5xl mx-auto px-6 border-t border-slate-200 dark:border-slate-800 reveal ${
+        isVisible ? 'reveal-visible' : ''
+      }`}
+    >
       <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-12 flex items-center">
         <span className="text-sky-600 dark:text-sky-400 font-mono text-xl mr-2">02.</span> Mes Réalisations
       </h2>

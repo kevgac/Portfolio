@@ -1,16 +1,15 @@
 @import "tailwindcss";
 
-/* Configuration spécifique pour Tailwind v4 */
 @variant dark (&:where(.dark, .dark *));
 
-/* Classes personnalisées pour l'effet de fondu au défilement */
-.reveal {
+/* Syntaxe ultra-propre pour injecter des animations personnalisées en Tailwind v4 */
+@utility reveal {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(30px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.reveal-visible {
+@utility reveal-visible {
   opacity: 1;
   transform: translateY(0);
 }
