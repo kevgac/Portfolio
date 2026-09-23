@@ -45,7 +45,7 @@ const Hero = () => {
           href="#projects" 
           className="px-6 py-3 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-700 dark:text-slate-300 font-medium rounded transition-all duration-300"
         >
-          Découvrir mes réalisations
+          Découvrir mes réalisations 
         </a>
       </div>
 
