@@ -70,7 +70,7 @@ const Projects = () => {
       }`}
     >
       <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-12 flex items-center">
-        <span className="text-sky-600 dark:text-sky-400 font-mono text-xl mr-2">02.</span> Mes Réalisations
+        <span className="text-sky-600 dark:text-sky-400 font-mono text-xl mr-2">03.</span> Mes Réalisations
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
